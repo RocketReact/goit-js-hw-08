@@ -75,18 +75,18 @@ function createGallery() {
     const itemLi = document.createElement('li');
     itemLi.classList.add('gallery-item');
 
+    //destructure images
+    const { preview, original, description } = images[i]
+
     // create a
     const itemA = document.createElement('a');
     itemA.classList.add('gallery-link');
-    itemA.href = '';
+    itemA.href = original;
     itemLi.append(itemA);
 
     //create img
     const itemImg = document.createElement('img');
     itemImg.classList.add('gallery-image');
-    //destructure images
-    const { preview, original, description } = images[i]
-
     itemImg.src = preview;
     itemImg.alt = description;
     itemImg.dataset.src = original
