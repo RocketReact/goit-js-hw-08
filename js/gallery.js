@@ -100,7 +100,12 @@ function createGallery() {
       if (e.target.nodeName === 'IMG') {
         const instance = basicLightbox.create(
           `
-    <img src= "${e.target.dataset.src}" width="1112" height="640" alt='${e.target.alt}'>
+    <img src= "${e.target.dataset.src}" 
+    class="modal-img" 
+    width="1112" 
+    height="640" 
+    alt='${e.target.alt}'
+    >
     `,
           {
             onShow: (instance) => {
