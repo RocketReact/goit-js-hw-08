@@ -102,12 +102,22 @@ function createGallery() {
       e.preventDefault();
       if (e.target.nodeName === 'IMG') {
         const instance = basicLightbox.create(`
-    <img src= ${e.target.dataset.src} width="1112" height="640" alt=${description}>
+    <img src= "${e.target.dataset.src}" width="1112" height="640" alt='${e.target.alt}'>
     `,
           {
             onShow: (instance) => {
-              instance.element().style.background = '#2E2F42CC';
-            }
+              const bg = instance.element()
+              bg.style.background = '#2E2F42CC';
+              const closeHandler = (event) => {
+                if (!bg.querySelector('img').contains(event.target)) {
+                  instance.close();
+                  document.removeEventListener('click', closeHandler);
+                }
+              };
+              setTimeout(() => {
+                document.addEventListener('click', closeHandler);
+              }, 100);
+            },
           }
         )
         instance.show()
@@ -116,5 +126,3 @@ function createGallery() {
   }
   return gallery.append(...itemsLi);
 }
-
-
