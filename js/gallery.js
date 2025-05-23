@@ -66,10 +66,8 @@ const images = [
 
 const gallery = document.querySelector('.gallery');
 
-
 createGallery(images);
 function createGallery() {
-
   let itemsLi = [];
   for (let i = 0; i < 9; i++) {
     // create li
@@ -77,7 +75,7 @@ function createGallery() {
     itemLi.classList.add('gallery-item');
 
     //destructure images
-    const { preview, original, description } = images[i]
+    const { preview, original, description } = images[i];
 
     // create a
     const itemA = document.createElement('a');
@@ -90,23 +88,23 @@ function createGallery() {
     itemImg.classList.add('gallery-image');
     itemImg.src = preview;
     itemImg.alt = description;
-    itemImg.dataset.src = original
+    itemImg.dataset.src = original;
     itemA.append(itemImg);
 
     itemsLi.push(itemLi);
 
-
-    gallery.addEventListener ('click', fnReactionListener)
+    gallery.addEventListener('click', fnReactionListener);
 
     function fnReactionListener(e) {
       e.preventDefault();
       if (e.target.nodeName === 'IMG') {
-        const instance = basicLightbox.create(`
+        const instance = basicLightbox.create(
+          `
     <img src= "${e.target.dataset.src}" width="1112" height="640" alt='${e.target.alt}'>
     `,
           {
             onShow: (instance) => {
-              const bg = instance.element()
+              const bg = instance.element();
               bg.style.background = '#2E2F42CC';
               const closeHandler = (event) => {
                 if (!bg.querySelector('img').contains(event.target)) {
@@ -118,9 +116,9 @@ function createGallery() {
                 document.addEventListener('click', closeHandler);
               }, 100);
             },
-          }
-        )
-        instance.show()
+          },
+        );
+        instance.show();
       }
     }
   }
