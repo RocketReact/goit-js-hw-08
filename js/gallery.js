@@ -66,6 +66,7 @@ const images = [
 
 const gallery = document.querySelector('.gallery');
 
+
 createGallery(images);
 function createGallery() {
 
@@ -93,7 +94,27 @@ function createGallery() {
     itemA.append(itemImg);
 
     itemsLi.push(itemLi);
+
+
+    gallery.addEventListener ('click', fnReactionListener)
+
+    function fnReactionListener(e) {
+      e.preventDefault();
+      if (e.target.nodeName === 'IMG') {
+        const instance = basicLightbox.create(`
+    <img src= ${e.target.dataset.src} width="1112" height="640" alt=${description}>
+    `,
+          {
+            onShow: (instance) => {
+              instance.element().style.background = '#2E2F42CC';
+            }
+          }
+        )
+        instance.show()
+      }
+    }
   }
   return gallery.append(...itemsLi);
 }
+
 
