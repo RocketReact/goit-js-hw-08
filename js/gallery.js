@@ -111,15 +111,6 @@ function createGallery() {
             onShow: (instance) => {
               const bg = instance.element();
               bg.style.background = '#2E2F42CC';
-              const closeHandler = (event) => {
-                if (!bg.querySelector('img').contains(event.target)) {
-                  instance.close();
-                  document.removeEventListener('click', closeHandler);
-                }
-              };
-              setTimeout(() => {
-                document.addEventListener('click', closeHandler);
-              }, 100);
             },
           },
         );
